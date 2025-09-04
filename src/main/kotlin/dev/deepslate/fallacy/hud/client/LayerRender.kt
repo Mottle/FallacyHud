@@ -1,6 +1,7 @@
 package dev.deepslate.fallacy.hud.client
 
 import com.github.wintersteve25.tau.renderer.HudUIRenderer
+import dev.deepslate.fallacy.hud.client.controller.*
 import net.minecraft.client.DeltaTracker
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.GuiGraphics
@@ -9,7 +10,13 @@ import net.minecraft.world.entity.player.Player
 
 class LayerRender : LayeredDraw.Layer {
 
-    val barUI = BarHudUi()
+    val barUI = BarHudUI(
+        HealthBarController(),
+        FoodBarController(),
+        AbsorptionBarController(),
+        AirBarController(),
+        VehicleBarController()
+    )
 
     val hud = HudUIRenderer(barUI)
 

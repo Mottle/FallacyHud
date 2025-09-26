@@ -12,7 +12,7 @@ object Handler {
     @SubscribeEvent
     fun onLayerSet(event: RegisterGuiLayersEvent) {
         val rid = TheMod.withID("hud")
-        event.registerBelow(VanillaGuiLayers.SELECTED_ITEM_NAME, rid, LayerRender())
+        event.registerBelow(VanillaGuiLayers.SELECTED_ITEM_NAME, rid, LayerRender.INSTANCE)
     }
 
     private val vanillaOverlays = listOf(

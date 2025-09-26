@@ -10,6 +10,10 @@ import net.minecraft.world.entity.player.Player
 
 class LayerRender : LayeredDraw.Layer {
 
+    companion object {
+        val INSTANCE = LayerRender()
+    }
+
     val barUI = BarHudUI(
         HealthBarController(),
         FoodBarController(),
@@ -18,7 +22,15 @@ class LayerRender : LayeredDraw.Layer {
         VehicleBarController()
     )
 
+    var statusUI = StatusHudUI()
+
     val hud = HudUIRenderer(barUI)
+
+    val status = HudUIRenderer(statusUI)
+
+    val centerUI = CenterHudUI()
+
+    val center = HudUIRenderer(centerUI)
 
     override fun render(guiGraphics: GuiGraphics, deltaTracker: DeltaTracker) {
         val mc = Minecraft.getInstance()
@@ -30,5 +42,10 @@ class LayerRender : LayeredDraw.Layer {
         val window = mc.window
         hud.tick()
         hud.render(window, guiGraphics, deltaTracker.getGameTimeDeltaPartialTick(true))
+        statusUI.setY(barUI.getUIY())
+        status.tick()
+        status.render(window, guiGraphics, deltaTracker.getGameTimeDeltaPartialTick(true))
+        center.tick()
+        center.render(window, guiGraphics, deltaTracker.getGameTimeDeltaPartialTick(true))
     }
 }

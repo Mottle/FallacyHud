@@ -27,6 +27,41 @@ import kotlin.math.sin
 
 class StatusBarUI(val controller: Controller) : DynamicUIComponent() {
 
+    companion object {
+        @JvmStatic
+        val RES: ResourceLocation = ResourceLocation.fromNamespaceAndPath(TheMod.ID, "textures/ui/bar.png")
+
+        const val BAR_U = 2
+
+        const val BAR_V = 11
+
+        const val BAR_WIDTH = 77
+
+        const val BAR_HEIGHT = 5
+
+        const val BAR_BORDER_U = 0
+
+        const val BAR_BORDER_V = 0
+
+        const val HIGHLIGHT_BAR_BORDER_V = 18
+
+        const val BAR_BORDER_WIDTH = 81
+
+        const val BAR_BORDER_HEIGHT = 9
+
+        const val ICON_SIZE = 9
+
+        const val FONT_WIDTH = 20
+
+        const val UI_SPACING = 1
+
+        const val UI_WIDTH = 91 + FONT_WIDTH + UI_SPACING
+
+        const val UI_HEIGHT = 9
+
+        const val UPDATED_TICKS = 20
+    }
+
     interface Controller {
 
         val entity: Entity? get() = Minecraft.getInstance().cameraEntity
@@ -113,7 +148,7 @@ class StatusBarUI(val controller: Controller) : DynamicUIComponent() {
         var alpha = 0f
             private set
 
-        fun tick(controller: Controller) {
+        fun tick() {
             val time = (System.currentTimeMillis() / 1000.0) * 3.0
             alpha = (sin(time) / 2.0 + 0.5).toFloat()
         }
@@ -122,40 +157,6 @@ class StatusBarUI(val controller: Controller) : DynamicUIComponent() {
     private var prevSide = Side.LEFT
 
     var side: Side = prevSide
-
-    companion object {
-        val RES: ResourceLocation = ResourceLocation.fromNamespaceAndPath(TheMod.ID, "textures/ui/bar.png")
-
-        const val BAR_U = 2
-
-        const val BAR_V = 11
-
-        const val BAR_WIDTH = 77
-
-        const val BAR_HEIGHT = 5
-
-        const val BAR_BORDER_U = 0
-
-        const val BAR_BORDER_V = 0
-
-        const val HIGHLIGHT_BAR_BORDER_V = 18
-
-        const val BAR_BORDER_WIDTH = 81
-
-        const val BAR_BORDER_HEIGHT = 9
-
-        const val ICON_SIZE = 9
-
-        const val FONT_WIDTH = 20
-
-        const val UI_SPACING = 1
-
-        const val UI_WIDTH = 91 + FONT_WIDTH + UI_SPACING
-
-        const val UI_HEIGHT = 9
-
-        const val UPDATED_TICKS = 20
-    }
 
     private val mainBarAnimation = MainBarAnimation()
 
@@ -177,8 +178,8 @@ class StatusBarUI(val controller: Controller) : DynamicUIComponent() {
         mainBarAnimation.tick(controller.status)
         secondMainBarAnimation.tick(controller.secondaryStatus)
 
-        mainBarIncreaseBarAnimation.tick(controller)
-        secondMainBarIncreaseBarAnimation.tick(controller)
+        mainBarIncreaseBarAnimation.tick()
+        secondMainBarIncreaseBarAnimation.tick()
 
         rebuild() //rebuild 会触发一次额外的tick
 //        TheMod.LOGGER.info("bar tick")
@@ -269,7 +270,6 @@ class StatusBarUI(val controller: Controller) : DynamicUIComponent() {
                 Size.staticSize(UI_WIDTH, UI_HEIGHT),
                 Row.Builder().withSpacing(UI_SPACING).build(bar, icon, text)
             )
-
 
         return ui
     }

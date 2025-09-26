@@ -1,7 +1,6 @@
 package dev.deepslate.fallacy.hud.client.controller
 
 import dev.deepslate.fallacy.hud.client.StatusBarUI
-import dev.deepslate.fallacy.survive.foodrework.ExtendedFoodData
 import dev.deepslate.fallacy.utils.RGB
 import net.minecraft.core.component.DataComponents
 import net.minecraft.resources.ResourceLocation
@@ -9,14 +8,9 @@ import net.minecraft.world.effect.MobEffects
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.entity.player.Player
-import net.neoforged.fml.loading.FMLLoader
 
 class FoodBarController : StatusBarUI.Controller {
     companion object {
-        @JvmStatic
-        val USE_SURVIVE_MOD =
-            lazy { FMLLoader.getLoadingModList().mods.any { modInfo -> modInfo.modId == "fallacy_survive" } }
-
         @JvmStatic
         private val ICON = ResourceLocation.withDefaultNamespace("hud/food_full")
 
@@ -45,7 +39,7 @@ class FoodBarController : StatusBarUI.Controller {
         get() {
             val player = entity as? Player ?: return StatusBarUI.Status(-1, -1)
             val foodState = player.foodData
-            val upbound = if (USE_SURVIVE_MOD.value) (foodState as ExtendedFoodData).getMaxFoodLevel(player) else 20
+            val upbound = 20
             val value = foodState.foodLevel
             return StatusBarUI.Status(value, upbound)
         }

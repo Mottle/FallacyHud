@@ -112,7 +112,7 @@ dependencies {
     implementation("thedarkcolour:kotlinforforge-neoforge:${project.property("kotlin4forge_version")}")
 
     implementation(project(":base"))
-    compileOnly(project(":survive"))
+//    compileOnly(project(":survive"))
 }
 
 // 模组元数据生成任务

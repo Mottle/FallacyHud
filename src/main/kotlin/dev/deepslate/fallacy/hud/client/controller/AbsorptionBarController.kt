@@ -36,7 +36,7 @@ class AbsorptionBarController : StatusBarUI.Controller {
         private val OVERLAY = ResourceLocation.withDefaultNamespace("hud/heart/container")
     }
 
-    override val priority: Int = 2
+    override val priority: Int = 3
 
     override val status: StatusBarUI.Status
         get() = if (entity !is LivingEntity) StatusBarUI.Status.empty() else StatusBarUI.Status(

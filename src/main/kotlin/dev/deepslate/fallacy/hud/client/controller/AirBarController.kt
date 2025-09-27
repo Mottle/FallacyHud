@@ -7,7 +7,7 @@ import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.player.Player
 
 class AirBarController : StatusBarUI.Controller {
-    override val priority: Int = 3
+    override val priority: Int = 4
 
     override val status: StatusBarUI.Status
         get() {

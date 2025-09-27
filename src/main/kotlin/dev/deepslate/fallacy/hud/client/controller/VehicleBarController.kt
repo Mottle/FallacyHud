@@ -19,7 +19,7 @@ class VehicleBarController : StatusBarUI.Controller {
         private val OVERLAY = ResourceLocation.withDefaultNamespace("hud/heart/vehicle_container")
     }
 
-    override val priority: Int = 4
+    override val priority: Int = 5
 
     override val status: StatusBarUI.Status
         get() {

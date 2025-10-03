@@ -1,7 +1,7 @@
 package dev.deepslate.fallacy.hud.client.controller
 
 import dev.deepslate.fallacy.hud.client.StatusBarUI
-import dev.deepslate.fallacy.utils.RGB
+import dev.deepslate.fallacy.utils.ARGB
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.LivingEntity
@@ -24,7 +24,7 @@ class AbsorptionBarController : StatusBarUI.Controller {
             "#3E84C6",
             "#B8C1E8",
             "#DFDFDF"
-        ).map(RGB::fromHex)
+        ).map(ARGB::fromHex)
 
         @JvmStatic
         private val ICON = ResourceLocation.withDefaultNamespace("hud/heart/absorbing_full")
@@ -44,7 +44,7 @@ class AbsorptionBarController : StatusBarUI.Controller {
             (entity as LivingEntity).maxAbsorption
         )
 
-    override val color: RGB
+    override val color: ARGB
         get() = COLORS.first()
 
     override val icon: ResourceLocation

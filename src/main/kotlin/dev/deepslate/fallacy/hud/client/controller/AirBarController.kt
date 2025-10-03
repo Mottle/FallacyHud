@@ -1,7 +1,7 @@
 package dev.deepslate.fallacy.hud.client.controller
 
 import dev.deepslate.fallacy.hud.client.StatusBarUI
-import dev.deepslate.fallacy.utils.RGB
+import dev.deepslate.fallacy.utils.ARGB
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.player.Player
@@ -15,7 +15,7 @@ class AirBarController : StatusBarUI.Controller {
             return StatusBarUI.Status(player.airSupply, player.maxAirSupply)
         }
 
-    override val color: RGB = RGB.fromHex("#00E6E6")
+    override val color: ARGB = ARGB.fromHex("#00E6E6")
 
     override val icon: ResourceLocation = ResourceLocation.withDefaultNamespace("hud/air")
 

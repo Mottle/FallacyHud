@@ -1,7 +1,7 @@
 package dev.deepslate.fallacy.hud.client.controller
 
 import dev.deepslate.fallacy.hud.client.StatusBarUI
-import dev.deepslate.fallacy.utils.RGB
+import dev.deepslate.fallacy.utils.ARGB
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.LivingEntity
@@ -10,7 +10,7 @@ class VehicleBarController : StatusBarUI.Controller {
 
     companion object {
         @JvmStatic
-        private val NORMAL_COLORS = listOf("#FF0000", "#FFFF00", "#00FF00").map(RGB::fromHex)
+        private val NORMAL_COLORS = listOf("#FF0000", "#FFFF00", "#00FF00").map(ARGB::fromHex)
 
         @JvmStatic
         private val ICON = ResourceLocation.withDefaultNamespace("hud/heart/vehicle_full")
@@ -27,9 +27,9 @@ class VehicleBarController : StatusBarUI.Controller {
             return StatusBarUI.Status(entity.health, entity.maxHealth)
         }
 
-    override val color: RGB
+    override val color: ARGB
         get() {
-            entity?.vehicle ?: return RGB(0, 0, 0)
+            entity?.vehicle ?: return ARGB(0, 0, 0)
             val ratio = status.ratio
 
             if (ratio >= 0.75) return NORMAL_COLORS[2]

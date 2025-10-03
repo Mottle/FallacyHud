@@ -18,7 +18,7 @@ import com.github.wintersteve25.tau.utils.Size
 import dev.deepslate.fallacy.base.TickCollector
 import dev.deepslate.fallacy.base.client.screen.component.primitive.ColoredTexture
 import dev.deepslate.fallacy.hud.TheMod
-import dev.deepslate.fallacy.utils.RGB
+import dev.deepslate.fallacy.utils.ARGB
 import net.minecraft.client.Minecraft
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.entity.Entity
@@ -70,11 +70,11 @@ class StatusBarUI(val controller: Controller) : DynamicUIComponent() {
 
         val status: Status
 
-        val color: RGB
+        val color: ARGB
 
         val secondaryStatus: Status? get() = null
 
-        val secondaryColor: RGB? get() = null
+        val secondaryColor: ARGB? get() = null
 
         val increment: Number get() = 0
 
@@ -200,7 +200,7 @@ class StatusBarUI(val controller: Controller) : DynamicUIComponent() {
         return iconComponent
     }
 
-    private fun buildBarInner(ratio: Float, color: RGB) = ColoredTexture.Builder(RES).withUv(SimpleVec2i(BAR_U, BAR_V))
+    private fun buildBarInner(ratio: Float, color: ARGB) = ColoredTexture.Builder(RES).withUv(SimpleVec2i(BAR_U, BAR_V))
         .withUvSize(SimpleVec2i(BAR_WIDTH, BAR_HEIGHT))
         .withSize(SimpleVec2i((BAR_WIDTH * ratio).toInt(), BAR_HEIGHT))
         .withColor(color)

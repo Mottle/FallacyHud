@@ -1,7 +1,7 @@
 package dev.deepslate.fallacy.hud.client.controller
 
 import dev.deepslate.fallacy.hud.client.StatusBarUI
-import dev.deepslate.fallacy.utils.RGB
+import dev.deepslate.fallacy.utils.ARGB
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.effect.MobEffects
 import net.minecraft.world.entity.Entity
@@ -12,13 +12,13 @@ class HealthBarController : StatusBarUI.Controller {
 
     companion object {
         @JvmStatic
-        private val NORMAL_COLORS = listOf("#FF0000", "#FFFF00", "#00FF00").map(RGB::fromHex)
+        private val NORMAL_COLORS = listOf("#FF0000", "#FFFF00", "#00FF00").map(ARGB::fromHex)
 
         @JvmStatic
-        private val POISON_COLORS = listOf("#00FF00", "#55FF55", "#00FF00").map(RGB::fromHex)
+        private val POISON_COLORS = listOf("#00FF00", "#55FF55", "#00FF00").map(ARGB::fromHex)
 
         @JvmStatic
-        private val WITHER_COLORS = listOf("#555555", "#AAAAAA", "#555555").map(RGB::fromHex)
+        private val WITHER_COLORS = listOf("#555555", "#AAAAAA", "#555555").map(ARGB::fromHex)
 
         @JvmStatic
         private val NORMAL_ICON: ResourceLocation = ResourceLocation.withDefaultNamespace("hud/heart/full")
@@ -62,9 +62,9 @@ class HealthBarController : StatusBarUI.Controller {
             return StatusBarUI.Status(upbound = livingEntity?.maxHealth ?: -1f, value = livingEntity?.health ?: -1f)
         }
 
-    override val color: RGB
+    override val color: ARGB
         get() {
-            val entity = entity as? LivingEntity ?: return RGB(0, 0, 0)
+            val entity = entity as? LivingEntity ?: return ARGB(0, 0, 0)
             val ratio = status.ratio
             val colors = if (entity.hasEffect(MobEffects.WITHER)) {
                 WITHER_COLORS
